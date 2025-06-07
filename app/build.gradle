@@ -41,3 +41,23 @@ tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+
+// ./gradlew :app:copyTask
+tasks.register("copyTask", Copy) {
+    from("source")
+    into("target")
+    include("*.war")
+}
+
+tasks.register("hello") {
+    doLast {
+        println("Hello!")
+    }
+}
+
+tasks.register("greet") {
+    doLast {
+        println("How are you?")
+    }
+    dependsOn("hello")
+}
